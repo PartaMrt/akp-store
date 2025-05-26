@@ -1,24 +1,26 @@
 import { PrismaClient } from '@prisma/client';
 import type { Product } from '../model/Product';
 
+var prisma = new PrismaClient();
+
 export class ProductRepository {
   async getAll(): Promise<Product[]> {
-    return PrismaClient.product.findMany();
+    return prisma.product.findMany();
   }
 
   async getById(id: string): Promise<Product | null> {
-    return PrismaClient.product.findUnique({ where: { id } });
+    return prisma.product.findUnique({ where: { id } }); 
   }
 
   async create(data: any): Promise<Product> {
-    return PrismaClient.product.create({ data });
+    return prisma.product.create({ data });
   }
 
   async update(id: string, data: Partial<Product>): Promise<Product> {
-    return PrismaClient.product.update({ where: { id }, data });
+    return prisma.product.update({ where: { id }, data });
   }
 
   async delete(id: string): Promise<void> {
-    await PrismaClient.product.delete({ where: { id } });
+    await prisma.product.delete({ where: { id } });
   }
 }

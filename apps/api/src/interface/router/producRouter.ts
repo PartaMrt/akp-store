@@ -1,7 +1,7 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
 import type { Context } from '../trpc/context';
-import { ProductService } from '../../service/ProductService';
+import { ProductService } from '../../service/productService';
 import { ProductRepository } from '../../repositories/productRepository';
 
 const t = initTRPC.context<Context>().create();
@@ -20,7 +20,7 @@ export const productRouter = t.router({
       name: z.string(),
       description: z.string(),
       price: z.number(),
-      imageUrl: z.string().optional(),
+      imageUrl: z.string().nullable(),
       stockQuantity: z.number(),
       minimumOrderQuantity: z.number(),
     })
