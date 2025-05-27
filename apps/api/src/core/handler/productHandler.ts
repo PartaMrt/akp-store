@@ -1,19 +1,16 @@
-import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import type { Context } from '../trpc/context';
+import { router, publicProcedure, protectedProcedure } from '../trpc'
 import { ProductService } from '../../application/productService';
 import { ProductRepository } from '../../infrastructure/productRepository';
 
-const t = initTRPC.context<Context>().create();
-
 const usecase = new ProductService(new ProductRepository());
 
-export const productHandler = t.router({
-  getAll: t.procedure.query(() => usecase.getAll()),
+export const productHandler = router({
+  getAll: protectedProcedure.query(() => usecase.getAll()),
 
-  getById: t.procedure.input(z.string()).query(({ input }) => usecase.getById(input)),
+  getById: protectedProcedure.input(z.string()).query(({ input }) => usecase.getById(input)),
 
-  create: t.procedure.input(
+  create: protectedProcedure.input(
     z.object({
       sku: z.string(),
       slug: z.string(),
@@ -26,7 +23,7 @@ export const productHandler = t.router({
     })
   ).mutation(({ input }) => usecase.create(input)),
 
-  update: t.procedure.input(
+  update: protectedProcedure.input(
     z.object({
       id: z.string(),
       data: z.object({
@@ -38,5 +35,10 @@ export const productHandler = t.router({
     })
   ).mutation(({ input }) => usecase.update(input.id, input.data)),
 
-  delete: t.procedure.input(z.string()).mutation(({ input }) => usecase.delete(input)),
+  delete: protectedProcedure.input(z.string()).mutation(({ input }) => usecase.delete(input)),
+
+  //  getPublic: publicProcedure.query(() => 'Anyone can see this'),
+  //  getPrivate: protectedProcedure.query(({ ctx }) => {
+  //     return { user: ctx.user }
+  //   }),
 });
