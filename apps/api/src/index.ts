@@ -1,4 +1,4 @@
-import app from './interface/hono';
+import app from './core/hono';
 
 const port = 3000;
 Bun.serve({ port, fetch: app.fetch });

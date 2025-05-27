@@ -1,5 +1,5 @@
-import type { Product } from '../model/Product';
-import { ProductRepository } from '../repositories/productRepository';
+import type { Product } from '../domain/Product';
+import { ProductRepository } from '../infrastructure/productRepository';
 
 export class ProductService {
   constructor(private repo: ProductRepository) {}

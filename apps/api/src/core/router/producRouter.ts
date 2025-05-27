@@ -1,8 +1,8 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
 import type { Context } from '../trpc/context';
-import { ProductService } from '../../service/productService';
-import { ProductRepository } from '../../repositories/productRepository';
+import { ProductService } from '../../application/productService';
+import { ProductRepository } from '../../infrastructure/productRepository';
 
 const t = initTRPC.context<Context>().create();
 

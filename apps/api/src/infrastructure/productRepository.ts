@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import type { Product } from '../model/Product';
+import type { Product } from '../domain/Product';
 
 var prisma = new PrismaClient();
 
