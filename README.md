@@ -1,84 +1,98 @@
-# Turborepo starter
+# 📱 B2B Used Mobile Phones Web App (Alibaba Clone)
 
-This Turborepo starter is maintained by the Turborepo core team.
+A full-stack web application built with a modern TypeScript stack that replicates the **“B2B Used Mobile Phones”** experience from Alibaba.com.
 
-## Using this example
+This project follows a scalable architecture, integrates a full API layer, and is production-ready for deployment.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
-```
+## 🚀 Tech Stack
 
-## What's inside?
+### 🖥️ Frontend
+- **React** (with React Router v7) — File-based routing, modern practices.
+- **Tailwind CSS** — Utility-first styling.
+- **shadcn/ui** — Accessible and elegant component system.
+- **Zod** — Type-safe schema validation.
 
-This Turborepo includes the following packages/apps:
+### ⚙️ Backend
+- **Bun** — Ultra-fast JavaScript runtime and package manager.
+- **Hono** — Lightweight web framework.
+- **tRPC** — End-to-end typesafe APIs.
+- **Prisma** — Type-safe ORM.
+- **PostgreSQL** — Relational database.
+- **Hono Auth** — Simple and extensible authentication system.
 
-### Apps and Packages
+### 🧰 Tooling
+- **Turborepo** — Monorepo management.
+- **Docker + Docker Compose** — Containerized local dev (Postgres setup).
+- **TypeScript** — Full type safety across the stack.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### ☁️ Deployment
+- Deployable on: **Vercel**.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+---
 
-### Utilities
+## 📁 Monorepo Structure (if using Turborepo)
 
-This Turborepo has some additional tools already setup for you:
+\`\`\`
+apps/
+  ├── web/       # React frontend
+  └── api/       # Hono + tRPC backend
+packages/
+  └── ui/        # Shared shadcn/ui components (optional)
+\`\`\`
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+---
 
-### Build
+## 🧪 Development
 
-To build all apps and packages, run the following command:
+### Prerequisites
+- [Bun](https://bun.sh)
+- [Docker](https://www.docker.com/) (for PostgreSQL)
+- [Node.js](https://nodejs.org) (optional if you use Bun entirely)
 
-```
-cd my-turborepo
-pnpm build
-```
+### Setup
 
-### Develop
+\`\`\`bash
+# Clone the repository
+git clone https://github.com/partaMrt/AKP-Test.git
+cd AKP-Store
 
-To develop all apps and packages, run the following command:
+# Install dependencies
+bun install
 
-```
-cd my-turborepo
-pnpm dev
-```
+# Start PostgreSQL with Docker
+docker-compose up -d
 
-### Remote Caching
+# Apply Prisma migrations
+bun run prisma migrate dev
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+# Start dev servers
+bun run dev  # or: turbo run dev --parallel
+\`\`\`
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+---
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## 🔐 Authentication
 
-```
-cd my-turborepo
-npx turbo login
-```
+This project uses **Hono Auth** (optional) for JWT-based authentication.
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- Login: \`/login\`
+- Protected Routes: via \`protectedProcedure\` in \`tRPC\`
+- JWT stored in \`Authorization\` headers
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+---
 
-```
-npx turbo link
-```
+## 📦 Deployment
 
-## Useful Links
+Deploy the backend (API) and frontend (web) separately or together depending on the platform.
 
-Learn more about the power of Turborepo:
+- Add production \`.env\` variables
+- Dockerize with \`Dockerfile\` & \`docker-compose.prod.yml\` (optional)
+- Connect to PostgreSQL service (e.g., Neon, Supabase, RDS)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+---
+
+## 👨‍💻 Author
+
+Built by Me
