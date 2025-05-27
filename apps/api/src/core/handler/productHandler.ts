@@ -8,7 +8,7 @@ const t = initTRPC.context<Context>().create();
 
 const usecase = new ProductService(new ProductRepository());
 
-export const productRouter = t.router({
+export const productHandler = t.router({
   getAll: t.procedure.query(() => usecase.getAll()),
 
   getById: t.procedure.input(z.string()).query(({ input }) => usecase.getById(input)),
