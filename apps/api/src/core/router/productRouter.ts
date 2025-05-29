@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { router, publicProcedure, protectedProcedure } from '../trpc'
+import { router, protectedProcedure } from '../../../../../packages/trpc'
 import { ProductService } from '../../application/ProductService';
 import { ProductRepository } from '../../infrastructure/ProductRepository';
 
@@ -16,7 +16,7 @@ export const productRoutes = router({
       slug: z.string(),
       name: z.string(),
       description: z.string(),
-      price: z.number(),
+      price: z.string(),
       imageUrl: z.string().nullable(),
       stockQuantity: z.number(),
       minimumOrderQuantity: z.number(),
@@ -30,7 +30,7 @@ export const productRoutes = router({
         sku: z.string().optional(),
         name: z.string().optional(),
         description: z.string().optional(),
-        price: z.number().optional(),
+        price: z.string().optional(),
       }),
     })
   ).mutation(({ input }) => usecase.update(input.id, input.data)),

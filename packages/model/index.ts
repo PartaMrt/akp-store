@@ -1,3 +1,4 @@
+import type { Decimal } from "@prisma/client/runtime/library";
 import { z } from "zod"
 
 export const productSchema = z.object({
@@ -6,7 +7,7 @@ export const productSchema = z.object({
     slug: z.string(),
     name: z.string(),
     description: z.string().optional(),
-    price: z.number().min(0),
+    price: z.string().optional(),
     imageUrl: z.string().url().nullable(),
     stockQuantity: z.number().int().nonnegative(),
     minimumOrderQuantity: z.number().int().min(1),
