@@ -1,11 +1,11 @@
-import type { Product } from '../../../../packages/model'
-import { ProductRepository } from '../infrastructure/ProductRepository';
+import type { Product, FilterProduct } from '../../../../packages/model'
+import { ProductRepository } from '../infrastructure/ProductRepository'
 
 export class ProductService {
   constructor(private repo: ProductRepository) {}
 
-  async getAll(): Promise<Product[]> {
-    return this.repo.getAll();
+  async getAll(filter : FilterProduct): Promise<Product[]> {
+    return this.repo.getAll(filter);
   }
 
   async getById(id: string): Promise<Product | null> {

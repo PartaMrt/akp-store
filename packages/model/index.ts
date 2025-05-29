@@ -22,3 +22,12 @@ export const loginPayloadSchema = z.object({
 })
 
 export type LoginPayload = z.infer<typeof loginPayloadSchema>
+
+export const filterProductSchema = z.object({
+    keyword: z.string().optional(),
+    selectedBrands: z.array(z.string()).optional(),
+    priceRange: z.number().optional(),
+    selectedStorage: z.array(z.string()).optional(),
+})
+
+export type FilterProduct = z.infer<typeof filterProductSchema>

@@ -24,7 +24,7 @@ app.use('/trpc/*',
 
 app.get('/', (c) => c.text('Hono + tRPC + Prisma API is running'));
 
-const port = 3000;
-Bun.serve({ port, fetch: app.fetch });
+const port = process.env.PORT ?? 3000;
 
-console.log(`Server running at http://localhost:${port}`);
+console.log(`Server is running on http://localhost:${port}`);
+Bun.serve({ port, fetch: app.fetch });

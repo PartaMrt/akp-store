@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: Product }) {
     onClick={() => navigate(`/products/${product.id}`)}
     className="w-full rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition">
       <img
-        src={product.imageUrl || 'https://img.global.news.samsung.com/id/wp-content/uploads/2024/11/28115936/Tampilan-Galaxy-A16-Gray-1000x667.jpg'}
+        src={product.imageUrl || import.meta.env.VITE_IMG_NOT_FOUND}
         alt={product.name}
         className="w-full h-78 object-cover"
       />

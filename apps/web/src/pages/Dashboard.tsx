@@ -2,22 +2,49 @@ import type { Product } from '../../../../packages/model'
 import ProductCard from '../components/ProductCard'
 import { trpc } from '../utils/trpc'
 import { useNavigate } from 'react-router-dom'
+import { useSearchStore } from '../utils/stores'
+import { filterProductSchema } from '../../../../packages/model'
+import { useEffect } from 'react'
+
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const { data, error } = trpc.product.getAll.useQuery()
+  const filter = useSearchStore()
 
-   if (error) {
-    if ((error as any).data?.code === 'UNAUTHORIZED') {
-      localStorage.removeItem('token');
-      navigate('/');
-    } else {
-      console.error("Error fetching product:", error);
+  const { data, error } = trpc.product.getAll.useQuery(filterProductSchema.parse({
+    keyword: filter.keyword,
+    selectedBrands: filter.selectedBrands,
+    priceRange: filter.priceRange,
+    selectedStorage: filter.selectedStorage
+  }))
+  const products = data as Product[] | undefined
+
+  useEffect(() => {
+    if (error) {
+      if ((error as any).data?.code === 'UNAUTHORIZED') {
+        localStorage.removeItem('token');
+        navigate('/');
+      } else {
+        console.error("Error fetching product:", error);
+      }
     }
+  }, [error, navigate]);
+
+  if (!products) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="text-gray-500">Loading products...</div>
+      </div>
+    )
   }
 
-
-  const products = data as Product[] | undefined
+  if (products.length === 0) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="text-gray-500">No products found</div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full bg-gray-50 py-6">

@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { router, publicProcedure } from '../../../../../packages/trpc'
-import { AuthService } from '../../application/AuthService';
+import { router, publicProcedure } from '../../../../packages/trpc'
+import { AuthService } from '../application/AuthService';
 
 const usecase = new AuthService();
 

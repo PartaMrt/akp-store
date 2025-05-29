@@ -32,8 +32,9 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit} className="space-y-4 p-6 shadow-md rounded w-full max-w-sm">
-        <div className="text-3xl font-bold text-orange-400 text-center py-2">Abracadabra<span className="text-gray-600">.com</span></div>
-        {error && <p className="text-red-500">{error}</p>}
+        <div className="text-3xl font-bold text-orange-400 text-center py-2">Abracadabra
+          <span className="text-gray-600">.com</span></div>
+          {error && <p className="text-red-500">{error}</p>}
         <input
           type="text"
           placeholder="Username"

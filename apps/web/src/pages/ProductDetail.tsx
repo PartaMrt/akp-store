@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { trpc } from '../utils/trpc'
+import { useEffect } from "react";
 
 const specs = {
     brand: "Apple",
@@ -16,14 +17,17 @@ export default function ProductDetailPage() {
   const { id } = useParams()
 
   const { data: product, isLoading, error } = trpc.product.getById.useQuery(id!);
-  if (error) {
-    if ((error as any).data?.code === 'UNAUTHORIZED') {
-      localStorage.removeItem('token');
-      navigate('/');
-    } else {
-      console.error("Error fetching product:", error);
+
+  useEffect(() => {
+    if (error) {
+      if ((error as any).data?.code === 'UNAUTHORIZED') {
+        localStorage.removeItem('token');
+        navigate('/');
+      } else {
+        console.error("Error fetching product:", error);
+      }
     }
-  }
+  }, [error, navigate]);
 
   if (isLoading) return <div>Loading...</div>;
   if (!product) return <div>Product not found.</div>;
@@ -32,7 +36,7 @@ export default function ProductDetailPage() {
     <div className="max-w-6xl mx-auto px-4 py-8 bg-white shadow-md rounded-lg">
       {/* Tombol Kembali */}
       <button
-        onClick={() => navigate(-1)} // atau window.history.back()
+        onClick={() => navigate(-1)}
         className="mb-6 flex items-center text-sm text-blue-600 hover:underline"
       >
         <svg
@@ -50,7 +54,7 @@ export default function ProductDetailPage() {
         {/* Gambar Produk */}
         <div className="rounded-lg overflow-hidden">
           <img
-            src={product.imageUrl || "https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"}
+            src={product.imageUrl || import.meta.env.VITE_IMG_NOT_FOUND}
             alt={product.name}
             className="w-full h-auto object-cover"
           />

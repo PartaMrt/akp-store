@@ -1,12 +1,13 @@
-import { z } from 'zod';
-import { router, protectedProcedure } from '../../../../../packages/trpc'
-import { ProductService } from '../../application/ProductService';
-import { ProductRepository } from '../../infrastructure/ProductRepository';
+import { z } from 'zod'
+import { router, protectedProcedure } from '../../../../packages/trpc'
+import { filterProductSchema } from '../../../../packages/model'
+import { ProductService } from '../application/ProductService'
+import { ProductRepository } from '../infrastructure/ProductRepository'
 
 const usecase = new ProductService(new ProductRepository());
 
 export const productRoutes = router({
-  getAll: protectedProcedure.query(() => usecase.getAll()),
+  getAll: protectedProcedure.input(filterProductSchema).query(({ input }) => usecase.getAll(input)),
 
   getById: protectedProcedure.input(z.string()).query(({ input }) => usecase.getById(input)),
 
@@ -36,9 +37,4 @@ export const productRoutes = router({
   ).mutation(({ input }) => usecase.update(input.id, input.data)),
 
   delete: protectedProcedure.input(z.string()).mutation(({ input }) => usecase.delete(input)),
-
-  //  getPublic: publicProcedure.query(() => 'Anyone can see this'),
-  //  getPrivate: protectedProcedure.query(({ ctx }) => {
-  //     return { user: ctx.user }
-  //   }),
 });

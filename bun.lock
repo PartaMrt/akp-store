@@ -39,6 +39,7 @@
         "react-dom": "^19.1.0",
         "react-router-dom": "^7.6.1",
         "tailwindcss": "^4.1.7",
+        "zustand": "^5.0.5",
       },
       "devDependencies": {
         "@eslint/js": "^9.25.0",
@@ -1204,6 +1205,8 @@
     "yocto-queue": ["yocto-queue@0.1.0", "http://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz", {}, ""],
 
     "zod": ["zod@3.25.28", "", {}, "sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q=="],
+
+    "zustand": ["zustand@5.0.5", "", { "peerDependencies": { "@types/react": ">=18.0.0", "immer": ">=9.0.6", "react": ">=18.0.0", "use-sync-external-store": ">=1.2.0" }, "optionalPeers": ["@types/react", "immer", "react", "use-sync-external-store"] }, "sha512-mILtRfKW9xM47hqxGIxCv12gXusoY/xTSHBYApXozR0HmQv299whhBeeAcRy+KrPPybzosvJBCOmVjq6x12fCg=="],
 
     "@eslint-community/eslint-utils/eslint-visitor-keys": ["eslint-visitor-keys@3.4.3", "http://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.4.3.tgz", {}, ""],
 
