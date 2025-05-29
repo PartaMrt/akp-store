@@ -1,8 +1,10 @@
 // src/trpc/context.ts
 import type { Context } from 'hono'
-import { jwtVerify } from 'jose'
+import { AuthService } from '../../application/AuthService'
+import { TRPCError } from '@trpc/server'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET)
+var authService = new AuthService ()
 
 export const createContext = async (c: Context) => {
   const authHeader = c.req.header('Authorization')
@@ -10,10 +12,10 @@ export const createContext = async (c: Context) => {
   let user = null
   if (token) {
     try {
-      const { payload } = await jwtVerify(token, JWT_SECRET)
-      user = payload
+      const loginPayload  = await authService.verifyToken(token)
+      user = loginPayload
     } catch (err) {
-      console.log('Invalid token:', err)
+      throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid credentials' })
     }
   }
   return { c, user }

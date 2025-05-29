@@ -1,20 +1,26 @@
-// import app from './core/hono';
-// import 'dotenv/config';
-
-// const port = 3000;
-// Bun.serve({ port, fetch: app.fetch });
-
-// console.log(`Server running at http://localhost:${port}`);
-
 import { Hono } from 'hono';
+import { cors } from 'hono/cors'
 import 'dotenv/config';
-import authRoutes from './core/router/authRouter';
-import productRoutes from './core/router/productRouter';
+import { trpcServer } from '@hono/trpc-server';
+import { appRouter } from './core/router';
+import { createContext as baseCreateContext } from './core/trpc/AppContext';
 
 const app = new Hono()
 
-app.route('/auth', authRoutes)
-app.route('/', productRoutes)
+app.use(
+  '*',
+  cors({
+    origin: '*', 
+    allowMethods: ['GET', 'POST'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+
+app.use('/trpc/*', 
+    trpcServer({ 
+        router: appRouter, 
+        createContext: (opts, c) => baseCreateContext(c)
+    }));
 
 app.get('/', (c) => c.text('Hono + tRPC + Prisma API is running'));
 

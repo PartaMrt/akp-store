@@ -1,19 +1,18 @@
-import { Hono } from 'hono';
-import { jwt } from 'hono/jwt';
-import { loginHandler, protectedHandler } from '../handler/authHandler';
+import { z } from 'zod';
+import { router, publicProcedure, protectedProcedure } from '../trpc'
+import { AuthService } from '../../application/AuthService';
 
-const authRouter = new Hono();
+const usecase = new AuthService();
 
-authRouter.post('/login', 
-    loginHandler);
+export const authRoutes = router({
+  login: publicProcedure
+    .input(z.object({
+      username: z.string(),
+      password: z.string(),
+    }))
+    .mutation(async ({ input }) => {
+      const { username, password } = input;
+      return await usecase.login(username, password);
+    }),
 
-authRouter.get(
-  '/protected',
-  jwt({ secret:  process.env.JWT_SECRET as string}),
-  protectedHandler
-)
-
-authRouter.get('/', (c) => 
-    c.text('Hono + tRPC + Prisma API is running'));
-
-export default authRouter;
+});

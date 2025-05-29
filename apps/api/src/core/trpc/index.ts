@@ -1,7 +1,7 @@
 import { initTRPC, TRPCError } from '@trpc/server'
-import type { AppContext } from './appContext'
+import type { AppContext } from './AppContext'
 
-const t = initTRPC.context<AppContext>().create()
+export const t = initTRPC.context<AppContext>().create()
 
 export const router = t.router
 export const publicProcedure = t.procedure
