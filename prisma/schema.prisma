@@ -19,7 +19,7 @@ model Product {
   slug                  String   @unique
   name                  String
   description           String
-  price                 Decimal
+  price                 Decimal @db.Decimal(10, 2) 
   imageUrl              String?
   stockQuantity         Int
   minimumOrderQuantity  Int

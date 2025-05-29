@@ -16,7 +16,7 @@ export const productRoutes = router({
       slug: z.string(),
       name: z.string(),
       description: z.string(),
-      price: z.string(),
+      price: z.number(),
       imageUrl: z.string().nullable(),
       stockQuantity: z.number(),
       minimumOrderQuantity: z.number(),
@@ -30,7 +30,7 @@ export const productRoutes = router({
         sku: z.string().optional(),
         name: z.string().optional(),
         description: z.string().optional(),
-        price: z.string().optional(),
+        price: z.number().optional(),
       }),
     })
   ).mutation(({ input }) => usecase.update(input.id, input.data)),

@@ -7,7 +7,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <div 
     onClick={() => navigate(`/products/${product.id}`)}
-    className="max-w-sm rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition">
+    className="w-full rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition">
       <img
         src={product.imageUrl || 'https://img.global.news.samsung.com/id/wp-content/uploads/2024/11/28115936/Tampilan-Galaxy-A16-Gray-1000x667.jpg'}
         alt={product.name}
@@ -15,8 +15,17 @@ export default function ProductCard({ product }: { product: Product }) {
       />
       <div className="p-3 flex flex-col gap-1">
         <h2 className="text-sm font-semibold line-clamp-2">{product.name}</h2>
-        <p className="text-sm text-gray-800">{product.price.toString()}</p>
-        <p className="text-xs text-gray-500">{product.sku}</p>
+        <p className="text-sm text-gray-800">Rp {product.price?.toLocaleString("id-ID")}</p>
+        <p className="text-xs text-gray-500">SKU: {product.sku}</p>
+        <p className="text-xs text-gray-500 line-clamp-2">{product.description}</p>
+        <div className="flex justify-between items-center text-xs text-gray-600 mt-1">
+          <span>Stok: {product.stockQuantity}</span>
+          <span>Min. order: {product.minimumOrderQuantity}</span>
+        </div>
+        <div className="flex justify-between items-center text-xs text-gray-400 mt-2">
+          <span>Dibuat: {new Date(product.createdAt).toLocaleDateString('id-ID')}</span>
+          <span>Diperbarui: {new Date(product.updatedAt).toLocaleDateString('id-ID')}</span>
+        </div>
         <button className="mt-2 text-sm border rounded-md py-1 px-3 hover:bg-gray-100 transition">
           Chat now
         </button>

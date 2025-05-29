@@ -8,7 +8,7 @@ export class ProductRepository {
     const products = await prisma.product.findMany();
     return products.map(product => ({
       ...product,
-      price: product.price?.toString(),
+      price: Number(product.price),
     }));
   }
 
@@ -17,7 +17,7 @@ export class ProductRepository {
     if (!product) return null;
     return {
       ...product,
-      price: product.price?.toString(),
+      price: Number(product.price),
     };
   }
 
@@ -25,7 +25,7 @@ export class ProductRepository {
     const product = await prisma.product.create({ data });
     return {
       ...product,
-      price: product.price?.toString(),
+      price: Number(product.price),
     };
   }
 
@@ -33,7 +33,7 @@ export class ProductRepository {
     const product = await prisma.product.update({ where: { id }, data });
     return {
       ...product,
-      price: product.price?.toString(),
+      price: Number(product.price),
     };
   }
 
