@@ -2,7 +2,6 @@
   "name": "akp-store",
   "devDependencies": {
     "prettier": "^3.5.3",
-    "tsx": "^4.19.4",
     "turbo": "^2.5.3",
     "typescript": "5.8.2"
   },
@@ -16,8 +15,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types",
-    "seed": "bunx tsx prisma/seed.ts"
+    "check-types": "turbo run check-types"
   },
   "workspaces": [
     "apps/*",

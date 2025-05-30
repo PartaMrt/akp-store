@@ -5,7 +5,7 @@ CREATE TABLE "Product" (
     "slug" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" DECIMAL(10,2) NOT NULL,
     "imageUrl" TEXT,
     "stockQuantity" INTEGER NOT NULL,
     "minimumOrderQuantity" INTEGER NOT NULL,
