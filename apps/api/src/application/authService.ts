@@ -1,4 +1,4 @@
-import type { LoginPayload } from '../../../../packages/model'
+import type { LoginPayload } from '@repo/model'
 import { TRPCError } from '@trpc/server'
 import { SignJWT, jwtVerify } from 'jose'
 

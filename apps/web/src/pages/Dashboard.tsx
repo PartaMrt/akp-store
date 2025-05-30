@@ -1,34 +1,23 @@
-import type { Product } from '../../../../packages/model'
+import type { Product } from '@repo/model'
 import ProductCard from '../components/ProductCard'
 import { trpc } from '../utils/trpc'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import { useSearchStore } from '../utils/stores'
-import { filterProductSchema } from '../../../../packages/model'
-import { useEffect } from 'react'
+import { filterProductSchema } from '@repo/model'
+//import { useEffect } from 'react'
 
 
 export default function Dashboard() {
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const filter = useSearchStore()
 
-  const { data, error } = trpc.product.getAll.useQuery(filterProductSchema.parse({
+  const { data } = trpc.product.getAll.useQuery(filterProductSchema.parse({
     keyword: filter.keyword,
     selectedBrands: filter.selectedBrands,
     priceRange: filter.priceRange,
     selectedStorage: filter.selectedStorage
   }))
   const products = data as Product[] | undefined
-
-  useEffect(() => {
-    if (error) {
-      if ((error as any).data?.code === 'UNAUTHORIZED') {
-        localStorage.removeItem('token');
-        navigate('/');
-      } else {
-        console.error("Error fetching product:", error);
-      }
-    }
-  }, [error, navigate]);
 
   if (!products) {
     return (

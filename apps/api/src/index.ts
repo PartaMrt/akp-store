@@ -2,8 +2,8 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors'
 import 'dotenv/config';
 import { trpcServer } from '@hono/trpc-server';
-import { appRouter } from '../../../packages/trpc/router';
-import { createContext as baseCreateContext } from '../../../packages/trpc/AppContext';
+import { appRouter } from '@repo/trpc/router';
+import { createContext as baseCreateContext } from '@repo/trpc/AppContext';
 
 const app = new Hono()
 

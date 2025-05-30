@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { router, protectedProcedure } from '../../../../packages/trpc'
-import { filterProductSchema } from '../../../../packages/model'
+import { router, protectedProcedure } from '@repo/trpc'
+import { filterProductSchema } from '@repo/model'
 import { ProductService } from '../application/ProductService'
 import { ProductRepository } from '../infrastructure/ProductRepository'
 

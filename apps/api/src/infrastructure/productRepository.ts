@@ -1,4 +1,4 @@
-import type { Product, FilterProduct } from '../../../../packages/model'
+import type { Product, FilterProduct } from '@repo/model'
 import { PrismaClient } from '@prisma/client'
 
 var prisma = new PrismaClient();

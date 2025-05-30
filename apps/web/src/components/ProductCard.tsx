@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import type { Product } from '../../../../packages/model'
+import type { Product } from '@repo/model'
 
 export default function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate()

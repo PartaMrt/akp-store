@@ -16,18 +16,7 @@ export default function ProductDetailPage() {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const { data: product, isLoading, error } = trpc.product.getById.useQuery(id!);
-
-  useEffect(() => {
-    if (error) {
-      if ((error as any).data?.code === 'UNAUTHORIZED') {
-        localStorage.removeItem('token');
-        navigate('/');
-      } else {
-        console.error("Error fetching product:", error);
-      }
-    }
-  }, [error, navigate]);
+  const { data: product, isLoading } = trpc.product.getById.useQuery(id!);
 
   if (isLoading) return <div>Loading...</div>;
   if (!product) return <div>Product not found.</div>;
