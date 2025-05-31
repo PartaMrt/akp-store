@@ -31,3 +31,5 @@ export const filterProductSchema = z.object({
 })
 
 export type FilterProduct = z.infer<typeof filterProductSchema>
+
+export const JWT_SECRET = "D27gijdvth3Ul3DjGcexjcFfgCHc8jWd"

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { router, publicProcedure } from '@repo/trpc'
-import { AuthService } from '../application/AuthService';
+import { AuthService } from '../application/authService';
 
 const usecase = new AuthService();
 

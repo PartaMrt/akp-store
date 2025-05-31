@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { trpc } from '../utils/trpc'
-import { useEffect } from "react";
 
 const specs = {
     brand: "Apple",

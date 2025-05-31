@@ -1,4 +1,5 @@
 import type { LoginPayload } from '@repo/model'
+import { JWT_SECRET } from '@repo/model'
 import { TRPCError } from '@trpc/server'
 import { SignJWT, jwtVerify } from 'jose'
 
@@ -15,11 +16,11 @@ export class AuthService {
     return await new SignJWT(payload)
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime('1h')
-      .sign(new TextEncoder().encode(process.env.JWT_SECRET))
+      .sign(new TextEncoder().encode(JWT_SECRET))
   }
 
   async verifyToken(token: string): Promise<LoginPayload> {
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET))
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET))
     return payload as LoginPayload
   }
 }

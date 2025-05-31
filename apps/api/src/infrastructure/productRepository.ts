@@ -1,5 +1,5 @@
 import type { Product, FilterProduct } from '@repo/model'
-import { PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 
 var prisma = new PrismaClient();
 
@@ -60,7 +60,7 @@ export class ProductRepository {
     };
   }
 
-  async create(data: any): Promise<Product> {
+  async create(data: Prisma.ProductCreateInput): Promise<Product> {
     const product = await prisma.product.create({ data });
     return {
       ...product,

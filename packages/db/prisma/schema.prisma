@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://admin:admin@db:5432/AKP"//"postgresql://admin:admin@localhost:5432/AKP?AKP=public"//env("DATABASE_URL")
 }
 
 model Product {
