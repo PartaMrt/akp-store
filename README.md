@@ -1,49 +1,42 @@
-# 📱 Fullstack Web App Turborepo
+# 📱 Fullstack Web App with Turborepo
 
-This project follows a scalable architecture, integrates a full API layer, and is production-ready for deployment.
+This project follows a **scalable architecture**, integrates a **fully type-safe API layer**, and is **production-ready** for deployment.
 
 ---
 
 ## 🚀 Tech Stack
 
 ### 🖥️ Frontend
-- **Vite + React + Zustand** (with React Router v7) — File-based routing, modern practices.
-- **Tailwind CSS** — Utility-first styling.
-- **Zod** — Type-safe schema validation.
+- **Vite + React + Zustand** — Modern SPA with file-based routing using React Router v7.
+- **Tailwind CSS** — Utility-first CSS framework for rapid UI development.
+- **Zod** — Schema validation with full TypeScript support.
 
 ### ⚙️ Backend
 - **Bun** — Ultra-fast JavaScript runtime and package manager.
-- **Hono** — Lightweight web framework.
-- **tRPC** — End-to-end typesafe APIs.
-- **Prisma** — Type-safe ORM.
-- **PostgreSQL** — Relational database.
+- **Hono** — Lightweight web framework for building fast APIs.
+- **tRPC** — End-to-end type-safe API routes.
+- **Prisma** — Type-safe and auto-generated ORM.
+- **PostgreSQL** — Relational database used in production setups.
 - **Hono Auth** — Simple and extensible authentication system.
 
 ### 🧰 Tooling
-- **Turborepo** — Monorepo management.
-- **Docker + Docker Compose** — Containerized local dev (Postgres setup).
-- **TypeScript** — Full type safety across the stack.
+- **Turborepo** — High-performance monorepo build system.
+- **Docker + Docker Compose** — For containerized local development (PostgreSQL setup).
+- **TypeScript** — Type safety across the full stack.
 
-### ☁️ Deployment
-- Deployable on: **Vercel**.
 ---
+### 🧪 Development
 
-## 📁 Monorepo Structure (if using Turborepo)
-
-\`\`\`
+## 📁 Monorepo Structure
 apps/
-  ├── web/       # React frontend
-  └── api/       # Hono + tRPC backend using Clean Architecture
+  ├── web/       # React frontend (Vite + Zustand + Tailwind)
+  └── api/       # Hono + tRPC backend with Clean Architecture
+
 packages/
-  └──/        # Shared prisma,model etc (optional)
-\`\`\`
+  └── db/        # Shared Prisma setup, database models, DTOs, etc.
 
----
-
-## 🧪 Development
-
-### Setup
-\`\`\`bash
+## Setup
+```bash
 # Clone the repository
 git clone https://github.com/partaMrt/AKP-Test.git
 cd AKP-Store
@@ -61,7 +54,8 @@ bun run packages/db/prisma/seed.ts
 
 # Start dev servers
 bun run dev  # or: turbo run dev --parallel
-\`\`\`
+
+```
 
 ## 👨‍💻 Author
 
