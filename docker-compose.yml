@@ -18,6 +18,8 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://admin:admin@db:5432/AKP
     container_name: backend
     depends_on:
       - db

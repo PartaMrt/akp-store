@@ -1,6 +1,9 @@
 #!/bin/sh
 
 echo "📦 Generating Prisma Client..."
+
+echo "📦 DATABASE_URL from ENV: $DATABASE_URL"
+
 bunx prisma generate --schema=packages/db/prisma/schema.prisma
 
 echo "⬢ Running Prisma Migrate (deploy)..."

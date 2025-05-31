@@ -1,6 +1,4 @@
-# 📱 B2B Used Mobile Phones Web App (Alibaba Clone)
-
-A full-stack web application built with a modern TypeScript stack that replicates the **“B2B Used Mobile Phones”** experience from Alibaba.com.
+# 📱 Fullstack Web App Turborepo
 
 This project follows a scalable architecture, integrates a full API layer, and is production-ready for deployment.
 
@@ -9,9 +7,8 @@ This project follows a scalable architecture, integrates a full API layer, and i
 ## 🚀 Tech Stack
 
 ### 🖥️ Frontend
-- **React** (with React Router v7) — File-based routing, modern practices.
+- **Vite + React + Zustand** (with React Router v7) — File-based routing, modern practices.
 - **Tailwind CSS** — Utility-first styling.
-- **shadcn/ui** — Accessible and elegant component system.
 - **Zod** — Type-safe schema validation.
 
 ### ⚙️ Backend
@@ -29,7 +26,6 @@ This project follows a scalable architecture, integrates a full API layer, and i
 
 ### ☁️ Deployment
 - Deployable on: **Vercel**.
-
 ---
 
 ## 📁 Monorepo Structure (if using Turborepo)
@@ -37,22 +33,16 @@ This project follows a scalable architecture, integrates a full API layer, and i
 \`\`\`
 apps/
   ├── web/       # React frontend
-  └── api/       # Hono + tRPC backend
+  └── api/       # Hono + tRPC backend using Clean Architecture
 packages/
-  └── ui/        # Shared shadcn/ui components (optional)
+  └──/        # Shared prisma,model etc (optional)
 \`\`\`
 
 ---
 
 ## 🧪 Development
 
-### Prerequisites
-- [Bun](https://bun.sh)
-- [Docker](https://www.docker.com/) (for PostgreSQL)
-- [Node.js](https://nodejs.org) (optional if you use Bun entirely)
-
 ### Setup
-
 \`\`\`bash
 # Clone the repository
 git clone https://github.com/partaMrt/AKP-Test.git
@@ -64,34 +54,14 @@ bun install
 # Start PostgreSQL with Docker
 docker-compose up -d
 
-# Apply Prisma migrations
-bun run prisma migrate dev
+# Apply Prisma generate , migrations & seed
+bunx prisma generate --schema=packages/db/prisma/schema.prisma
+bunx prisma migrate deploy --schema=packages/db/prisma/schema.prisma
+bun run packages/db/prisma/seed.ts
 
 # Start dev servers
 bun run dev  # or: turbo run dev --parallel
 \`\`\`
-
----
-
-## 🔐 Authentication
-
-This project uses **Hono Auth** (optional) for JWT-based authentication.
-
-- Login: \`/login\`
-- Protected Routes: via \`protectedProcedure\` in \`tRPC\`
-- JWT stored in \`Authorization\` headers
-
----
-
-## 📦 Deployment
-
-Deploy the backend (API) and frontend (web) separately or together depending on the platform.
-
-- Add production \`.env\` variables
-- Dockerize with \`Dockerfile\` & \`docker-compose.prod.yml\` (optional)
-- Connect to PostgreSQL service (e.g., Neon, Supabase, RDS)
-
----
 
 ## 👨‍💻 Author
 
