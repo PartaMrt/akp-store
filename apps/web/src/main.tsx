@@ -10,7 +10,7 @@ const queryClient = new QueryClient()
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: import.meta.env.VITE_BACKEND_URL + '/trpc',
+      url: 'https://akp-store-backend-production.up.railway.app/trpc',
       headers: () => {
         const token = localStorage.getItem('token')
         return token ? { Authorization: `Bearer ${token}` } : {}
