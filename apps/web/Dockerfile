@@ -4,20 +4,22 @@ WORKDIR /app
 COPY . .
 
 # ---- PRUNE PHASE ----
-FROM base AS prune
-RUN bun install
-RUN bunx turbo prune --scope=web --docker
+# FROM base AS prune
+# RUN bun install
+# RUN bunx turbo prune --scope=web --docker
 
 # ---- BUILD DEPS ----
-FROM base AS deps
-COPY --from=prune /app/out/json/ ./
-RUN bun install
+# FROM base AS deps
+# COPY --from=prune /app/out/json/ ./
+# RUN bun install
 
 # ---- BUILD APP ----
 FROM base AS build
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=prune /app/out/full/ ./
-#RUN bun run build --cwd apps/web
+# COPY --from=deps /app/node_modules ./node_modules
+# COPY --from=prune /app/out/full/ ./
+RUN bun install
+ # Build the vite web app
+RUN bun run build --cwd apps/web
 
 # ---- FINAL RUNTIME IMAGE ----
 FROM nginx:alpine AS deploy

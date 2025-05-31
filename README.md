@@ -1,4 +1,4 @@
-# 📱 Fullstack Web App with Turborepo
+## 📱 Fullstack Web App with Turborepo
 
 This project follows a **scalable architecture**, integrates a **fully type-safe API layer**, and is **production-ready** for deployment.
 
@@ -25,9 +25,18 @@ This project follows a **scalable architecture**, integrates a **fully type-safe
 - **TypeScript** — Type safety across the full stack.
 
 ---
-### 🧪 Development
 
-## 📁 Monorepo Structure
+### 🧪 Demo
+
+```bash
+ https://akp-store-frontend-production.up.railway.app/
+
+```
+![Demo](./dashboard.png)
+
+---
+
+### 📁 Monorepo Structure
 ```bash
 
 apps/
@@ -36,7 +45,12 @@ apps/
 
 packages/
   └── db/        # Shared Prisma setup, database models, DTOs, etc.
+```
+---
 
+### 🧪 Development
+
+```bash
 ## Setup
 
 # Clone the repository
@@ -58,7 +72,8 @@ bun run packages/db/prisma/seed.ts
 bun run dev  # or: turbo run dev --parallel
 
 ```
+---
 
-## 👨‍💻 Author
+### 👨‍💻 Author
 
 Built by Me
