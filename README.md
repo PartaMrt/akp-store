@@ -28,6 +28,8 @@ This project follows a **scalable architecture**, integrates a **fully type-safe
 ### 🧪 Development
 
 ## 📁 Monorepo Structure
+```bash
+
 apps/
   ├── web/       # React frontend (Vite + Zustand + Tailwind)
   └── api/       # Hono + tRPC backend with Clean Architecture
@@ -36,7 +38,7 @@ packages/
   └── db/        # Shared Prisma setup, database models, DTOs, etc.
 
 ## Setup
-```bash
+
 # Clone the repository
 git clone https://github.com/partaMrt/AKP-Test.git
 cd AKP-Store
