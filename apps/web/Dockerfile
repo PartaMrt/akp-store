@@ -19,7 +19,7 @@ FROM base AS build
 # COPY --from=prune /app/out/full/ ./
 RUN bun install
  # Build the vite web app
-RUN bun run build --cwd apps/web
+RUN bun run vite build apps/web  
 
 # ---- FINAL RUNTIME IMAGE ----
 FROM nginx:alpine AS deploy
