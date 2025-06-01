@@ -38,7 +38,7 @@ export default function Dashboard() {
   return (
     <div className="w-full bg-gray-50 py-6">
       <div className="max-w-screen-2xl mx-auto px-4">
-        <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
