@@ -1,4 +1,4 @@
-## 📱 Fullstack Web App with Turborepo + Rect + Hono
+## 📱 Fullstack Web App with Turborepo + React + Hono
 
 This project follows a **scalable architecture**, integrates a **fully type-safe API layer**, and is **production-ready** for deployment.
 
