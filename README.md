@@ -1,4 +1,4 @@
-## 📱 Fullstack Web App with Turborepo
+## 📱 Fullstack Web App with Turborepo + Rect + Hono
 
 This project follows a **scalable architecture**, integrates a **fully type-safe API layer**, and is **production-ready** for deployment.
 
@@ -26,7 +26,7 @@ This project follows a **scalable architecture**, integrates a **fully type-safe
 
 ---
 
-### 🧪 Demo
+### 🌐 Demo
 
 ```bash
  https://akp-store-frontend-production.up.railway.app/
