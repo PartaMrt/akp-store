@@ -40,11 +40,21 @@ This project follows a **scalable architecture**, integrates a **fully type-safe
 ```bash
 
 apps/
-  ├── web/       # React frontend (Vite + Zustand + Tailwind)
-  └── api/       # Hono + tRPC backend with Clean Architecture
-
+  api/
+└── src/
+    └── application/ #service, usecase, bussiness logic
+    └── infrastuctur/ #repository, query
+    └── router/ #trpc router
+  web/
+└── src/
+    └── components/ #component UI
+    └── layout/ #main layout
+    └── pages/ #main page
+    └── utils/ #helper, trpc, zustand
 packages/
-  └── db/        # Shared Prisma setup, database models, DTOs, etc.
+  └── db/        # Shared Prisma setup
+  └── model/     # Shared DTO
+  └── trpc/      # Shared Trpc Context
 ```
 ---
 
@@ -64,8 +74,8 @@ bun install
 docker-compose up -d
 
 # Apply Prisma generate , migrations & seed
-bunx prisma generate --schema=packages/db/prisma/schema.prisma
-bunx prisma migrate deploy --schema=packages/db/prisma/schema.prisma
+bun prisma generate --schema=packages/db/prisma/schema.prisma
+bun prisma migrate deploy --schema=packages/db/prisma/schema.prisma
 bun run packages/db/prisma/seed.ts
 
 # Start dev servers
